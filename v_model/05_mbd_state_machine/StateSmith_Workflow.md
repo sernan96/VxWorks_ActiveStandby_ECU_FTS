@@ -41,6 +41,12 @@ Failover 상태 머신을 StateSmith로 모델링하고 C 코드로 생성한 �
 6. Safety Supervisor 통합 테스트를 수행한다.
 7. 모델 버전, 생성 코드 버전, 테스트 증거를 산출물 관리 폴더에 기록한다.
 
+## 현재 적용안
+
+현재 첫 MBD 원본은 `statesmith_model/FailoverSupervisor.plantuml`이다.
+
+StateSmith CLI 설치와 생성 절차는 `statesmith_model/StateSmith_Install_And_Generate.md`에 정리한다. Safety Supervisor 통합 계약은 `boards/01_safety_supervisor_rpi4_vxworks/docs/MBD_Integration_Notes.md`와 `boards/01_safety_supervisor_rpi4_vxworks/include/SupervisorMbd_Port.h`에서 관리한다.
+
 ## 추적성
 
 StateSmith의 상태와 이벤트는 다음 항목에 연결되어야 한다.
@@ -50,4 +56,3 @@ StateSmith의 상태와 이벤트는 다음 항목에 연결되어야 한다.
 - 시스템 요구사항: `SR-*`
 - 소프트웨어 요구사항: `SWR-*`
 - 테스트 케이스: `TC-*`
-

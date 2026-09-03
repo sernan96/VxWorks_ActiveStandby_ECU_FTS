@@ -1,0 +1,36 @@
+@startuml FailoverSupervisor
+
+' StateSmith model source for the Safety Supervisor failover state machine.
+' This file is the MBD source of truth. Generated C must not be edited manually.
+
+[*] --> INIT
+
+INIT : entry / SupervisorMbd_logStateEntry("INIT");
+INIT --> NORMAL : EV_INIT_DONE / SupervisorMbd_setActiveOwnerPrimary(); SupervisorMbd_logTransition("INIT", "NORMAL");
+
+NORMAL : entry / SupervisorMbd_logStateEntry("NORMAL");
+NORMAL : EV_PRIMARY_HEARTBEAT_OK / SupervisorMbd_resetPrimaryFaultCounter();
+NORMAL --> PRIMARY_FAULT_CANDIDATE : EV_PRIMARY_HEARTBEAT_TIMEOUT / SupervisorMbd_incrementPrimaryFaultCounter(); SupervisorMbd_logEvent("PRIMARY_HEARTBEAT_TIMEOUT");
+NORMAL --> SAFE : EV_CRITICAL_FAULT / SupervisorMbd_enterSafeState(); SupervisorMbd_logTransition("NORMAL", "SAFE");
+
+PRIMARY_FAULT_CANDIDATE : entry / SupervisorMbd_logStateEntry("PRIMARY_FAULT_CANDIDATE");
+PRIMARY_FAULT_CANDIDATE --> NORMAL : EV_PRIMARY_HEARTBEAT_OK / SupervisorMbd_resetPrimaryFaultCounter(); SupervisorMbd_logTransition("PRIMARY_FAULT_CANDIDATE", "NORMAL");
+PRIMARY_FAULT_CANDIDATE --> FAILOVER_IN_PROGRESS : EV_FAULT_CONFIRMATION_REACHED / SupervisorMbd_declarePrimaryFault(); SupervisorMbd_isolatePrimary(); SupervisorMbd_requestBackupActivation(); SupervisorMbd_startBackupActivationTimer(); SupervisorMbd_logTransition("PRIMARY_FAULT_CANDIDATE", "FAILOVER_IN_PROGRESS");
+
+FAILOVER_IN_PROGRESS : entry / SupervisorMbd_logStateEntry("FAILOVER_IN_PROGRESS");
+FAILOVER_IN_PROGRESS --> DEGRADED : EV_BACKUP_ACTIVE_ACK / SupervisorMbd_stopBackupActivationTimer(); SupervisorMbd_setActiveOwnerBackup(); SupervisorMbd_logTransition("FAILOVER_IN_PROGRESS", "DEGRADED");
+FAILOVER_IN_PROGRESS --> SAFE : EV_BACKUP_ACTIVATION_TIMEOUT / SupervisorMbd_enterSafeState(); SupervisorMbd_logTransition("FAILOVER_IN_PROGRESS", "SAFE");
+
+DEGRADED : entry / SupervisorMbd_logStateEntry("DEGRADED");
+DEGRADED --> RECOVERY_DETECTED : EV_PRIMARY_RECOVERY_DETECTED / SupervisorMbd_logEvent("PRIMARY_RECOVERY_DETECTED");
+DEGRADED --> SAFE : EV_CRITICAL_FAULT / SupervisorMbd_enterSafeState(); SupervisorMbd_logTransition("DEGRADED", "SAFE");
+
+RECOVERY_DETECTED : entry / SupervisorMbd_logStateEntry("RECOVERY_DETECTED");
+RECOVERY_DETECTED : EV_PRIMARY_HEARTBEAT_OK / SupervisorMbd_logEvent("PRIMARY_STILL_RECOVERED");
+RECOVERY_DETECTED --> NORMAL : EV_MANUAL_FAILBACK_APPROVED / SupervisorMbd_requestBackupStandby(); SupervisorMbd_setActiveOwnerPrimary(); SupervisorMbd_resetPrimaryFaultCounter(); SupervisorMbd_logTransition("RECOVERY_DETECTED", "NORMAL");
+RECOVERY_DETECTED --> SAFE : EV_CRITICAL_FAULT / SupervisorMbd_enterSafeState(); SupervisorMbd_logTransition("RECOVERY_DETECTED", "SAFE");
+
+SAFE : entry / SupervisorMbd_logStateEntry("SAFE"); SupervisorMbd_enterSafeState();
+SAFE : EV_PRIMARY_HEARTBEAT_OK / SupervisorMbd_logEvent("IGNORED_PRIMARY_HEARTBEAT_IN_SAFE");
+
+@enduml
