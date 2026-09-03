@@ -7,3 +7,4 @@
 | 2026-09-03 | DEC-003 | V-Model 산출물은 단계별 폴더와 요구사항 추적표로 관리한다. | 사용자 요구사항부터 Validation까지 추적성 유지 필요 | 변경 시 Traceability Matrix 갱신 필요 |
 | 2026-09-03 | DEC-004 | Failover MBD는 StateSmith를 기준 도구로 사용한다. | 임베디드 상태 머신 생성과 재생성 가능한 C 코드 관리에 적합함 | 모델 원본, 생성 코드, VxWorks adapter를 분리 관리 |
 | 2026-09-03 | DEC-005 | ISO 26262는 인증 준수가 아닌 lightweight tailoring으로 적용한다. | 토이프로젝트 범위에서 표준 전체 적용은 과도하지만 안전 lifecycle 산출물은 어필 가치가 있음 | Item Definition, HARA-lite, FSC, traceability, evidence만 관리 |
+| 2026-09-03 | DEC-006 | Primary ECU는 TC375 Lite Kit용 Infineon ASCLIN UART ADS 예제를 기준 프로젝트로 사용한다. | ADS 프로젝트 설정과 iLLD 라이브러리 구성이 필요하고, heartbeat 송신에 UART 예제가 적합함 | 공식 예제 import 후 이 저장소의 overlay 코드를 적용 |

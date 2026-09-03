@@ -1,0 +1,23 @@
+# AURIX Development Studio / Eclipse local files
+.metadata/
+.recommenders/
+RemoteSystemsTempFiles/
+
+# ADS build outputs
+Debug/
+Release/
+*.elf
+*.hex
+*.map
+*.lst
+*.o
+*.d
+*.a
+
+# Local/editor files
+.vscode/
+.idea/
+*.swp
+*.tmp
+Thumbs.db
+

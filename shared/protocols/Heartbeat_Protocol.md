@@ -2,6 +2,12 @@
 
 ## Primary Heartbeat
 
+초기 TC375 Lite Kit 구현은 ASCII CSV-like frame으로 heartbeat를 송신한다.
+
+```text
+HB,PRI,seq=<number>,state=<number>,health=<number>,fi=<0|1>
+```
+
 | 필드 | 설명 |
 | --- | --- |
 | `message_id` | `PRIMARY_HEARTBEAT` |
@@ -25,4 +31,4 @@
 - heartbeat 단일 누락은 fault 확정 조건이 아니다.
 - `sequence_counter` 역전 또는 장시간 정지는 fault 후보로 기록한다.
 - Backup 활성화는 command 송신이 아니라 `BACKUP_ACTIVE_ACK` 수신으로 완료 판단한다.
-
+- TC375 초기 구현은 100 ms 주기로 heartbeat를 송신한다.
