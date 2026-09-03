@@ -25,6 +25,17 @@ StateSmith generated C 코드는 Safety Supervisor의 failover decision layer에
 - `SupervisorMbd_Port.c`는 generated action 함수와 실제 VxWorks/transport/logging 구현 사이의 adapter 역할을 한다.
 - 현재 `SupervisorMbd_Port.c`는 host test 가능한 skeleton이며, 실제 VxWorks API 연결은 후속 구현에서 수행한다.
 
+## 현재 생성 결과
+
+| 산출물 | 경로 | 상태 |
+| --- | --- | --- |
+| StateSmith model | `v_model/05_mbd_state_machine/statesmith_model/FailoverSupervisor.plantuml` | 작성 완료 |
+| Generated header | `v_model/05_mbd_state_machine/generated_c/FailoverSupervisor.h` | 생성 완료 |
+| Generated source | `v_model/05_mbd_state_machine/generated_c/FailoverSupervisor.c` | 생성 완료 |
+| Simulator HTML | `v_model/05_mbd_state_machine/statesmith_model/FailoverSupervisor.sim.html` | 생성 완료 |
+
+컴파일 검증은 VxWorks SDK 또는 host C compiler 설치 후 수행한다.
+
 ## 다음 구현 순서
 
 1. StateSmith CLI 설치
@@ -33,4 +44,3 @@ StateSmith generated C 코드는 Safety Supervisor의 failover decision layer에
 4. `SupervisorMbd_Port.c`의 함수명을 generated code에서 호출하는 action 이름과 맞춤
 5. host unit test 작성
 6. VxWorks task와 transport adapter 연결
-

@@ -35,7 +35,7 @@ Failover 상태 머신을 StateSmith로 모델링하고 C 코드로 생성한 �
 
 1. 상태, 이벤트, guard, action을 `MBD_State_Machine_Spec.md`에 먼저 반영한다.
 2. StateSmith 모델을 `statesmith_model/`에 작성한다.
-3. 모델 리뷰 후 C 코드를 `generated_c/`로 생성한다.
+3. 모델 리뷰 후 StateSmith CLI로 C 코드를 `generated_c/`로 생성한다.
 4. 생성 코드를 host 환경에서 빌드하고 상태 전이 테스트를 수행한다.
 5. VxWorks adapter와 연결한다.
 6. Safety Supervisor 통합 테스트를 수행한다.
@@ -46,6 +46,8 @@ Failover 상태 머신을 StateSmith로 모델링하고 C 코드로 생성한 �
 현재 첫 MBD 원본은 `statesmith_model/FailoverSupervisor.plantuml`이다.
 
 StateSmith CLI 설치와 생성 절차는 `statesmith_model/StateSmith_Install_And_Generate.md`에 정리한다. Safety Supervisor 통합 계약은 `boards/01_safety_supervisor_rpi4_vxworks/docs/MBD_Integration_Notes.md`와 `boards/01_safety_supervisor_rpi4_vxworks/include/SupervisorMbd_Port.h`에서 관리한다.
+
+2026-09-03 기준 StateSmith CLI 0.22.2를 프로젝트 로컬 dotnet tool로 설치했고 `generated_c/FailoverSupervisor.c`, `generated_c/FailoverSupervisor.h`, `statesmith_model/FailoverSupervisor.sim.html` 생성을 완료했다.
 
 ## 추적성
 
