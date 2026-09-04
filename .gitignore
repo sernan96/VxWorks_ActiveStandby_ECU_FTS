@@ -6,7 +6,9 @@ RemoteSystemsTempFiles/
 # ADS build outputs
 Debug/
 Release/
+build/
 *.elf
+*.vxe
 *.hex
 *.map
 *.lst
@@ -20,4 +22,3 @@ Release/
 *.swp
 *.tmp
 Thumbs.db
-

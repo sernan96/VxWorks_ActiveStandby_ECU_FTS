@@ -1,6 +1,6 @@
 APP_NAME := supervisor
 BUILD_DIR := build
-PROJECT_ROOT := ../../..
+PROJECT_ROOT := ../..
 GENERATED_DIR := $(PROJECT_ROOT)/v_model/05_mbd_state_machine/generated_c
 
 CC ?= cc
@@ -16,7 +16,7 @@ SRCS := \
 	$(GENERATED_DIR)/FailoverSupervisor.c
 
 CPPFLAGS += -Iinclude -I$(GENERATED_DIR)
-CFLAGS ?= -std=c99 -Wall -Wextra -O2
+CFLAGS ?= -rtp -static -std=c99 -Wall -Wextra -O2
 LDFLAGS ?=
 LDLIBS ?=
 

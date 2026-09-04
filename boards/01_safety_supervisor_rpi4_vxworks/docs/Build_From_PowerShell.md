@@ -72,6 +72,14 @@ wsl -d Ubuntu-22.04 -e bash -lc "cd ~/sdk/windriver/rpi4-26.03 && source ./sdken
 boards/01_safety_supervisor_rpi4_vxworks/build/supervisor.vxe
 ```
 
+Makefile은 VxWorks RTP application 생성을 위해 `$CC -rtp -static` 옵션을 사용한다.
+
+## 현재 검증 상태
+
+2026-09-04 기준 Ubuntu-22.04 WSL + VxWorks SDK for Raspberry Pi 4 환경에서 `build/supervisor.vxe` 생성에 성공했다.
+
+빌드 evidence는 `artifact_management/evidence/TC-SUP-BUILD-001_VxWorks_RTP_Build.md`에 기록한다.
+
 ## 실행 목적
 
 현재 `supervisor.vxe`는 실제 TC375 heartbeat 수신 전 단계의 self-test RTP이다. 실행하면 StateSmith generated state machine이 다음 흐름으로 전이되는지 콘솔 로그로 확인한다.
