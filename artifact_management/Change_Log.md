@@ -8,3 +8,4 @@
 | 2026-09-03 | CHG-004 | StateSmith MBD 적용 가이드, PlantUML 모델 초안, Supervisor adapter skeleton 추가 | MBD, Safety Supervisor | Codex | Draft |
 | 2026-09-03 | CHG-005 | Raspberry Pi 4 VxWorks SDK 설치 상태와 setup 가이드 추가 | Safety Supervisor | Codex | Draft |
 | 2026-09-03 | CHG-006 | StateSmith CLI 로컬 설치 및 FailoverSupervisor C 코드 생성 | MBD, Safety Supervisor | Codex | Draft |
+| 2026-09-04 | CHG-007 | VxWorks RTP Supervisor self-test app, Makefile, PowerShell build guide 추가 | Safety Supervisor | Codex | Draft |

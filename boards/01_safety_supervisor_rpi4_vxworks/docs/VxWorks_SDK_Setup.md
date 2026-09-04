@@ -50,7 +50,7 @@ Windows에서 ADS로 TC375를 개발하는 것과 VxWorks SDK로 Raspberry Pi 4 
 
 ```bash
 cd <SDK_DIR>
-source toolkit/wind_sdk_env.linux
+source ./sdkenv.sh
 ```
 
 6. compiler와 debugger 명령이 PATH에 잡혔는지 확인한다.
@@ -59,6 +59,30 @@ source toolkit/wind_sdk_env.linux
 which $CC
 which wrdbg
 ```
+
+## Ubuntu dash 설정
+
+VxWorks SDK 26.03의 `sdkenv.sh`는 `/bin/sh`가 `dash`이면 다음 메시지를 출력하고 종료한다.
+
+```text
+The default shell is dash, please change your default shell to bash.
+```
+
+Ubuntu에서는 다음 명령으로 `/bin/sh`를 bash로 변경한다.
+
+```bash
+sudo dpkg-reconfigure dash
+```
+
+프롬프트가 뜨면 `No`를 선택한다.
+
+확인:
+
+```bash
+readlink /bin/sh
+```
+
+`bash`가 나오면 정상이다.
 
 ## Supervisor application 빌드 방향
 
@@ -78,4 +102,3 @@ which wrdbg
 3. StateSmith generated C를 Supervisor build에 포함
 4. UART 또는 UDP heartbeat receiver 구현
 5. TC375 Lite Kit Primary ECU heartbeat와 end-to-end 연동
-

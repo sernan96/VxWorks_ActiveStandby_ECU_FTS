@@ -24,15 +24,18 @@ void SupervisorMbd_incrementPrimaryFaultCounter(void);
 uint32_t SupervisorMbd_getPrimaryFaultCounter(void);
 
 void SupervisorMbd_declarePrimaryFault(void);
+bool SupervisorMbd_isPrimaryFaultDeclared(void);
 void SupervisorMbd_isolatePrimary(void);
 void SupervisorMbd_requestBackupActivation(void);
 void SupervisorMbd_requestBackupStandby(void);
 
 void SupervisorMbd_startBackupActivationTimer(void);
 void SupervisorMbd_stopBackupActivationTimer(void);
+bool SupervisorMbd_isBackupActivationTimerRunning(void);
 void SupervisorMbd_enterSafeState(void);
+bool SupervisorMbd_isSafeStateRequested(void);
 
 bool SupervisorMbd_isManualFailbackAllowed(void);
+void SupervisorMbd_setManualFailbackAllowed(bool allowed);
 
 #endif /* SUPERVISOR_MBD_PORT_H_ */
-
